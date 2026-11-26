@@ -2,6 +2,16 @@
 
 Every release of GalaxyCut AI, in order, with what actually changed.
 
+## v1.7.14 — The Boot Stops Playing With The Owner
+
+**Released:** 2026-11-23
+
+- THE BOOT STOPS PLAYING WITH THE OWNER — the compatibility ladder used to climb ONE step per dead renderer (0 → 1 → 2 → 3) and every relaunch died on the way: the app closed and reopened three times before it stayed up. Measured: level 1 (GPU off) and level 2 (shared memory off) do NOT fix a renderer that dies inside a restricted namespace — level 3 (no-zygote) does. The ladder now goes straight to the level the CAUSE demands: one relaunch, not three, and the boot log says which degree it chose and why.
+- THE LOGS HAVE A CEILING — the runtime-guards log reached 1,3 GB and the main log 68 MB, both by endless append (the app checks free disk at boot while filling the disk itself). Every log now rotates at 8 MB and keeps one previous generation: the history stays readable and the disk stops bleeding.
+- THE LOCAL STORAGE IS NOT A VAULT — 1.649 timeline snapshots were kept forever in the renderer (out of 1.693 keys), each one a full timeline in JSON. The worklog now prunes to the newest 40 on every save: the undo history the owner needs stays, the bloat does not.
+- THE PANEL CLOSES ITSELF — the model picker opened in the top-right corner and stayed there until someone tapped it. Every popover, dropdown and the model panel now closes on its own after 20 idle seconds, and any activity inside renews the deadline: a panel that waits forever for a click misreports its own hygiene.
+- PROOF IS PART OF THE RELEASE: the verify suite grew 66 → 67 (verify--paineis-boot) and every count that moved was re-anchored WITH ITS CAUSE written inside the proof — a number without a cause is a number that lies. typecheck clean; the lint baseline of the untouched files stays untouched.
+
 ## v1.7.13 — The Honest Measurement Release
 
 **Released:** 2026-11-21
