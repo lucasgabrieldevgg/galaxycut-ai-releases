@@ -2,6 +2,14 @@
 
 Every release of GalaxyCut AI, in order, with what actually changed.
 
+## v1.7.15 — The Boot No Longer Waits For The Internet
+
+**Released:** 2026-11-26
+
+- THE BOOT NO LONGER WAITS FOR THE INTERNET — the four caption/thumbnail fonts (Anton, Bangers, Bebas Neue, Luckiest Guy) were fetched from Google Fonts on every launch, right on the render path (1,3 s measured) and the app could not even paint without a network. They now live inside the app (73 KB of woff2, SIL Open Font License) and are preloaded, so the editor opens offline and faster.
+- THE LOCAL SERVER CACHES FOR REAL — it answered "no-cache" to everything, so the renderer re-downloaded roughly thirty chunks on every single launch. The hashed Next.js assets are now immutable (one year), the local fonts get a week, and the HTML still revalidates — so the editor starts from cache while an app update is still seen.
+- PROOF IS PART OF THE RELEASE: the verify suite grew 67 → 68 (verify--fontes-cache) and every count that moved was re-anchored WITH ITS CAUSE written inside the proof — a number without a cause is a number that lies. typecheck clean; the lint baseline of the untouched files stays untouched.
+
 ## v1.7.14 — The Boot Stops Playing With The Owner
 
 **Released:** 2026-11-23
